@@ -1,5 +1,6 @@
 {
   "name": "prefix-tree-autocomplete",
+  "homepage": "https://hphothong.github.io/prefix-tree-autocomplete",
   "version": "0.1.0",
   "private": true,
   "scripts": {

@@ -19,7 +19,9 @@
     "plugins": [
         "react"
     ],
-    "rules": {},
+    "rules": {
+        "@typescript-eslint/space-before-function-paren": "off"
+    },
     "ignorePatterns": [
         "node_modules",
         "build"

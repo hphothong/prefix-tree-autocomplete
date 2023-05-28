@@ -35,14 +35,11 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Lint Code
-        run: npm run lint
+      - name: Lint & Build
+        run: npm run build
 
       - name: Unit Tests
         run: npm test
-
-      - name: Webpack Build
-        run: npm run build
 
       - name: Setup Pages
         if: github.event_name == 'push'
@@ -52,7 +49,7 @@ jobs:
         if: github.event_name == 'push'
         uses: actions/upload-pages-artifact@v1
         with:
-          path: "./out/_next"
+          path: "./out"
 
   deploy:
     needs: build

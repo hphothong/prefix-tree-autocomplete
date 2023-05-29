@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --pass-with-no-tests"
+    "test": "jest"
   },
   "dependencies": {
     "react": "18.2.0",
@@ -24,6 +24,7 @@
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "next": "13.4.4",
+    "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
     "typescript": "5.0.4"
   }

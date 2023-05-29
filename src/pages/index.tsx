@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Prefix Tree Autocomplete</title>
         <meta
           name="description"
           content="Prefix tree display for autocomplete"

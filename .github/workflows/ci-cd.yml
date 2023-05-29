@@ -36,9 +36,10 @@ jobs:
         run: npm ci
 
       - name: Lint & Build
-        run: |
-          npm run build
-          touch ./out/.nojekyll
+        run: npm run build
+
+      - name: Generate .nojekyll File For _next Directory GitHub Pages Visibility
+        run: touch out/.nojekyll
 
       - name: Unit Tests
         run: npm test

@@ -1,11 +1,12 @@
+import "@/styles/globals.css";
 import Head from "next/head";
-import styles from "./index.module.css";
+import styles from "./_app.module.css";
 import { usePrefixTree } from "@/common/hooks/usePrefixTree";
 import PrefixTreeView from "@/components/prefix-tree-view/PrefixTreeView";
 import { useState } from "react";
 import TextInput from "@/components/text-input/TextInput";
 
-export default function Home() {
+export default function App() {
   const [prefix, setPrefix] = useState<string>("");
   const prefixTree = usePrefixTree();
 
@@ -26,7 +27,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <h1>Prefix Tree Autocomplete</h1>
+        <h1 className={styles.title}>Prefix Tree Autocomplete</h1>
         <div className={styles.inputWrapper}>
           <TextInput
             placeholder="Enter words to store in the prefix tree..."

@@ -1,7 +1,19 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
+import styles from "./index.module.css";
+import { usePrefixTree } from "@/common/hooks/usePrefixTree";
+import PrefixTreeView from "@/components/prefix-tree-view/PrefixTreeView";
+import { useState } from "react";
+import TextInput from "@/components/text-input/TextInput";
 
 export default function Home() {
+  const [prefix, setPrefix] = useState<string>("");
+  const prefixTree = usePrefixTree();
+
+  function handleAddWord() {
+    prefixTree.add(prefix);
+    setPrefix("");
+  }
+
   return (
     <>
       <Head>
@@ -15,6 +27,16 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <h1>Prefix Tree Autocomplete</h1>
+        <div className={styles.inputWrapper}>
+          <TextInput
+            placeholder="Enter words to store in the prefix tree..."
+            value={prefix}
+            onChange={(e) => setPrefix(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleAddWord()}
+            autoCompleteWords={prefixTree.getWords(prefix, { maxWords: 5 })}
+          />
+        </div>
+        <PrefixTreeView prefixTree={prefixTree} prefix={prefix} />
       </main>
     </>
   );

@@ -2,9 +2,13 @@ export interface PrefixTreeNode {
   [key: string]: PrefixTreeNode | boolean;
 }
 
+export type FlattenedPrefixTreeNodes = Array<
+  Array<{ [PrefixTree.terminator]: boolean; key: string }>
+>;
+
 export class PrefixTree {
-  private readonly terminator = "isWord";
-  private root: PrefixTreeNode = { [this.terminator]: false };
+  public static readonly terminator = "isWord";
+  private root: PrefixTreeNode = { [PrefixTree.terminator]: false };
 
   public constructor(values?: string[]) {
     values?.forEach(this.add);
@@ -14,11 +18,11 @@ export class PrefixTree {
     let node = this.root;
     for (const letter of value) {
       if (!(letter in node)) {
-        node[letter] = { [this.terminator]: false };
+        node[letter] = { [PrefixTree.terminator]: false };
       }
       node = node[letter] as PrefixTreeNode;
     }
-    node[this.terminator] = true;
+    node[PrefixTree.terminator] = true;
   };
 
   public has = (value: string): boolean => {
@@ -29,19 +33,27 @@ export class PrefixTree {
       }
       node = node[letter] as PrefixTreeNode;
     }
-    return node[this.terminator] === true;
+    return node[PrefixTree.terminator] === true;
+  };
+
+  public getNode = (prefix: string): PrefixTreeNode | null => {
+    let node = this.root;
+    for (const letter of prefix) {
+      if (!(letter in node)) {
+        return null;
+      }
+      node = node[letter] as PrefixTreeNode;
+    }
+    return node;
   };
 
   public getWords = (
     prefix: string,
     options: { maxWords: number } = { maxWords: 3 }
   ): string[] => {
-    let node = this.root;
-    for (const letter of prefix) {
-      if (!(letter in node)) {
-        return [];
-      }
-      node = node[letter] as PrefixTreeNode;
+    const node = this.getNode(prefix);
+    if (!node) {
+      return [];
     }
     return this.getWordsRecursively(prefix, options, node);
   };
@@ -55,11 +67,11 @@ export class PrefixTree {
     if (words.length === maxWords) {
       return words;
     }
-    if (node[this.terminator]) {
+    if (node[PrefixTree.terminator]) {
       words.push(prefix);
     }
     for (const key in node) {
-      if (key === this.terminator) {
+      if (key === PrefixTree.terminator) {
         continue;
       }
       this.getWordsRecursively(

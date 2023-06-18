@@ -1,11 +1,10 @@
 .inputWrapper {
   display: flex;
-  align-items: center;
+  flex: 1;
   border: 1px solid gray;
   border-radius: 0.25em;
-  padding: 0.0625rem;
-  width: 25vw;
-  height: 4vh;
+  padding: 0.25rem;
+  height: 3vh;
 }
 
 .input {

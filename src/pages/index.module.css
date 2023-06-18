@@ -1,6 +1,17 @@
 .main {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
   align-items: center;
+  flex-direction: column;
+  min-height: 100%;
+  margin: 1em;
+}
+
+.inputWrapper {
+  display: flex;
+  width: 100%;
+  max-width: 750px;
+}
+
+.addButton {
+  margin-left: 1em;
 }

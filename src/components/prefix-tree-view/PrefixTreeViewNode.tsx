@@ -1,5 +1,6 @@
 import styles from "./PrefixTreeViewNode.module.css";
 import { PrefixTree, PrefixTreeNode } from "@/common/prefix-tree";
+import classNames from "classnames";
 
 export type PrefixTreeViewNodeProps = {
   prefix: string;
@@ -12,13 +13,13 @@ export default function PrefixTreeViewNode({
 }: PrefixTreeViewNodeProps) {
   const isWord = node[PrefixTree.terminator];
   const title = prefix ? prefix : "root";
+
   return (
     <div className={styles.prefixTreeNodeWrapper}>
       <span
-        className={[
-          styles.prefixTreeNode,
-          isWord && styles.prefixTreeNodeWord,
-        ].join(" ")}
+        className={classNames(styles.prefixTreeNode, {
+          [styles.prefixTreeNodeWord]: isWord,
+        })}
       >
         {title}
       </span>

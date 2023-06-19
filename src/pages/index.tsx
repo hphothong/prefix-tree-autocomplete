@@ -9,10 +9,11 @@ import { Button } from "@/components/button/Button";
 export default function Home() {
   const [prefix, setPrefix] = useState<string>("");
   const prefixTree = usePrefixTree([
-    "Welcome",
+    "welcome",
     "to",
     "my",
-    "autocomplete",
+    "auto",
+    "complete",
     "project",
   ]);
 

@@ -5,6 +5,7 @@
   border-radius: 0.25em;
   padding: 0.25rem;
   height: 3vh;
+  min-height: 2em;
 }
 
 .input {
